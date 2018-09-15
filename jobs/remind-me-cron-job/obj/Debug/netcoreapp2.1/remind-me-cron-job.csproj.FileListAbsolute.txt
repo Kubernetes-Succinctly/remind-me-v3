@@ -1,0 +1,11 @@
+D:\Source Control\remind-me\v3\jobs\remind-me-cron-job\bin\Debug\netcoreapp2.1\remind-me-cron-job.deps.json
+D:\Source Control\remind-me\v3\jobs\remind-me-cron-job\bin\Debug\netcoreapp2.1\remind-me-cron-job.runtimeconfig.json
+D:\Source Control\remind-me\v3\jobs\remind-me-cron-job\bin\Debug\netcoreapp2.1\remind-me-cron-job.runtimeconfig.dev.json
+D:\Source Control\remind-me\v3\jobs\remind-me-cron-job\bin\Debug\netcoreapp2.1\remind-me-cron-job.dll
+D:\Source Control\remind-me\v3\jobs\remind-me-cron-job\bin\Debug\netcoreapp2.1\remind-me-cron-job.pdb
+D:\Source Control\remind-me\v3\jobs\remind-me-cron-job\obj\Debug\netcoreapp2.1\remind-me-cron-job.csprojAssemblyReference.cache
+D:\Source Control\remind-me\v3\jobs\remind-me-cron-job\obj\Debug\netcoreapp2.1\remind-me-cron-job.csproj.CoreCompileInputs.cache
+D:\Source Control\remind-me\v3\jobs\remind-me-cron-job\obj\Debug\netcoreapp2.1\remind-me-cron-job.AssemblyInfoInputs.cache
+D:\Source Control\remind-me\v3\jobs\remind-me-cron-job\obj\Debug\netcoreapp2.1\remind-me-cron-job.AssemblyInfo.cs
+D:\Source Control\remind-me\v3\jobs\remind-me-cron-job\obj\Debug\netcoreapp2.1\remind-me-cron-job.dll
+D:\Source Control\remind-me\v3\jobs\remind-me-cron-job\obj\Debug\netcoreapp2.1\remind-me-cron-job.pdb
