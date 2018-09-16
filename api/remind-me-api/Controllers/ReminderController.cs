@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using LiteDB;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using remind_me_api.Models;
@@ -10,6 +11,7 @@ namespace remind_me_api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ReminderController : ControllerBase
     {
         private readonly string connectionString;
@@ -23,7 +25,7 @@ namespace remind_me_api.Controllers
         [HttpGet("all")]
         public ActionResult<IEnumerable<Reminder>> Get()
         {
-            using (var db = new LiteDatabase(connectionString))
+            using(var db = new LiteDatabase(connectionString))
             {
                 var remindersCollection = db.GetCollection<Reminder>("reminders");
                 return remindersCollection.FindAll().ToList();
@@ -34,7 +36,7 @@ namespace remind_me_api.Controllers
         [HttpPost]
         public void Post([FromBody] Reminder value)
         {
-            using (var db = new LiteDatabase(connectionString))
+            using(var db = new LiteDatabase(connectionString))
             {
                 var remindersCollection = db.GetCollection<Reminder>("reminders");
                 value.Id = Guid.NewGuid().ToString();
