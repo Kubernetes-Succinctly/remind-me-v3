@@ -27,6 +27,7 @@ public class ProxyController : Controller
     public IActionResult GetAllReminders()
     {
         var request = new RestRequest("/api/Reminder/all", Method.GET);
+        request.AddHeader("Authorization", "test");
         var response = this.client.Execute(request);
         return Ok(response.Content);
     }

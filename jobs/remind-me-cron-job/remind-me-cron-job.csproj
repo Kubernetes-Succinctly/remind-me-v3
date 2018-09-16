@@ -6,4 +6,8 @@
     <RootNamespace>remind_me_cron_job</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="RestSharp" Version="106.3.1" />
+  </ItemGroup>
+
 </Project>
