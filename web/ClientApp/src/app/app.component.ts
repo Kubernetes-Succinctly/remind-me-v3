@@ -42,4 +42,10 @@ export class AppComponent implements OnInit {
       .subscribe(result => this.fetchReminders());
     this.form.reset();
   }
+
+  onDelete(reminderId) {
+    this.reminderDataService
+      .deleteTodoById(reminderId)
+      .subscribe(result => this.fetchReminders());
+  }
 }

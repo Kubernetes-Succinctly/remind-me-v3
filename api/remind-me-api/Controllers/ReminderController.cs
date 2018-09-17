@@ -22,7 +22,7 @@ namespace remind_me_api.Controllers
         [HttpGet("all")]
         public ActionResult<IEnumerable<Reminder>> Get()
         {
-            using (var db = new LiteDatabase(this.connectionString))
+            using(var db = new LiteDatabase(this.connectionString))
             {
                 var remindersCollection = db.GetCollection<Reminder>("reminders");
                 return remindersCollection.FindAll().ToList();
@@ -33,7 +33,7 @@ namespace remind_me_api.Controllers
         [HttpPost]
         public void Post([FromBody] Reminder value)
         {
-            using (var db = new LiteDatabase(this.connectionString))
+            using(var db = new LiteDatabase(this.connectionString))
             {
                 var remindersCollection = db.GetCollection<Reminder>("reminders");
                 value.Id = Guid.NewGuid().ToString();
@@ -44,7 +44,11 @@ namespace remind_me_api.Controllers
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
-            throw new NotImplementedException();
+            using(var db = new LiteDatabase(this.connectionString))
+            {
+                var remindersCollection = db.GetCollection<Reminder>("reminders");
+                remindersCollection.Delete(r => r.Id == id);
+            }
         }
     }
 }

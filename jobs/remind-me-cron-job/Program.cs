@@ -8,7 +8,7 @@ namespace remind_me_cron_job
         private static readonly int SMTPPort = 587;
         private static readonly string SMTPUserName = "e3fb490299e128104a48d914da3d3ed3";
         private static readonly string SMTPPassword = "6ca9f9d34e9a6ebde9e7513fa6a30f12";
-        private static readonly string APIUri = "http://localhost:5002";
+        private static readonly string APIUri = "http://localhost:5003";
 
         private static void Main(string[] args)
         {

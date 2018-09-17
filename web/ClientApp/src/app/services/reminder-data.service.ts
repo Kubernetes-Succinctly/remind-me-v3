@@ -13,8 +13,8 @@ export class ReminderDataService {
     return this.apiService.createReminder(reminder);
   }
 
-  deleteTodoById(id: string): ReminderDataService {
-    throw new Error("Not implemented");
+  deleteTodoById(id: string): Observable<any> {
+    return this.apiService.deleteReminder(id);
   }
 
   getAllReminders(): Observable<Reminder[]> {
