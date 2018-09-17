@@ -10,14 +10,18 @@ namespace jobs_tests
 {
     public class JobTests
     {
-        private static IRestClient MockRestClient<T>(HttpStatusCode httpStatusCode, T responseObject)
-            where T : new()
+        private static IRestClient PrepareMockRestClient(HttpStatusCode httpStatusCode, List<Reminder> responseObject)
         {
-            var response = new Mock<IRestResponse<T>>();
+            var response = new Mock<IRestResponse<List<Reminder>>>();
             response.Setup(_ => _.StatusCode).Returns(httpStatusCode);
             response.Setup(_ => _.Data).Returns(responseObject);
+            var tokenResponse = new Mock<IRestResponse<Dictionary<string, string>>>();
+            var tokenResponseDictionary = new Dictionary<string, string> { { "token", "testToken" } };
+            tokenResponse.Setup(_ => _.StatusCode).Returns(httpStatusCode);
+            tokenResponse.Setup(_ => _.Data).Returns(tokenResponseDictionary);
             var mockIRestClient = new Mock<IRestClient>();
-            mockIRestClient.Setup(x => x.Execute<T>(It.IsAny<IRestRequest>())).Returns(response.Object);
+            mockIRestClient.Setup(x => x.Execute<List<Reminder>>(It.IsAny<IRestRequest>())).Returns(response.Object);
+            mockIRestClient.Setup(x => x.Execute<Dictionary<string, string>>(It.IsAny<IRestRequest>())).Returns(tokenResponse.Object);
             return mockIRestClient.Object;
         }
 
@@ -26,11 +30,11 @@ namespace jobs_tests
         {
             var reminders = new List<Reminder>
             {
-                new Reminder {DueDate = DateTime.Today, Id = "1", Title = "Test"}
+                new Reminder { DueDate = DateTime.Today, Id = "1", Title = "Test" }
             };
-            var restClient = MockRestClient(HttpStatusCode.OK, reminders);
+            var restClient = PrepareMockRestClient(HttpStatusCode.OK, reminders);
             var smtpClient = new FakeSmtpClient();
-            var bootstrapper = new Bootstrapper(restClient, smtpClient, string.Empty);
+            var bootstrapper = new Bootstrapper(restClient, smtpClient);
             bootstrapper.Start(null);
             Assert.True(smtpClient.MailSent);
         }
