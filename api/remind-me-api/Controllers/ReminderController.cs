@@ -11,21 +11,18 @@ namespace remind_me_api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "Application")]
     public class ReminderController : ControllerBase
     {
         private readonly string connectionString;
 
-        public ReminderController(IConfiguration configuration)
-        {
-            connectionString = configuration["dbPath"];
-        }
+        public ReminderController(IConfiguration configuration) => this.connectionString = configuration["dbPath"];
 
         // GET api/reminder/all
         [HttpGet("all")]
         public ActionResult<IEnumerable<Reminder>> Get()
         {
-            using(var db = new LiteDatabase(connectionString))
+            using (var db = new LiteDatabase(this.connectionString))
             {
                 var remindersCollection = db.GetCollection<Reminder>("reminders");
                 return remindersCollection.FindAll().ToList();
@@ -36,7 +33,7 @@ namespace remind_me_api.Controllers
         [HttpPost]
         public void Post([FromBody] Reminder value)
         {
-            using(var db = new LiteDatabase(connectionString))
+            using (var db = new LiteDatabase(this.connectionString))
             {
                 var remindersCollection = db.GetCollection<Reminder>("reminders");
                 value.Id = Guid.NewGuid().ToString();

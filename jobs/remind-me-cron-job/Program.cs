@@ -11,7 +11,7 @@ namespace remind_me_cron_job
         private static readonly string APIUri = "http://localhost:5002";
 
         private static readonly string Token =
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZW1pbmQtbWUga3ViZXJuZXRlcyBzdWNjaW5jdGx5IiwiaWF0IjoxNTM3MDYxNjk5LCJleHAiOjE2MDAyMjAyMzMsImF1ZCI6InJlbWluZC1tZSBhcGkiLCJzdWIiOiJhcHBAcmVtaW5kLW1lLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFsbCJ9.J9cnEpSXqd9eQpVnpbbUtgkI-ZJSICyOUgTv2Z_6trk";
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3JlbWluZC1tZS9vYXV0aDIvZGVmYXVsdCIsImlhdCI6MTUzNzA2MTY5OSwiZXhwIjoxNjAwMjIwMjMzLCJhdWQiOiJhcGk6Ly9kZWZhdWx0Iiwic3ViIjoiYXBwQHJlbWluZC1tZS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIn0.DPvwRIbg1wyGXmjX5Al6fsiw2K-k2TWGmPUevQzZv6c";
 
         private static void Main(string[] args)
         {
