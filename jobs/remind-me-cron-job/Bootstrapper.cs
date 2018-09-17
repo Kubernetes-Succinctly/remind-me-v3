@@ -1,22 +1,21 @@
-﻿using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using Newtonsoft.Json;
+using RestSharp;
 
 namespace remind_me_cron_job
 {
     public class Bootstrapper
     {
-        private readonly string jwtToken;
         private readonly ISmtpClient smtpClient;
         private readonly IRestClient client;
 
-        public Bootstrapper(IRestClient client, ISmtpClient smtpClient, string jwtToken)
+        public Bootstrapper(IRestClient client, ISmtpClient smtpClient)
         {
             this.client = client;
             this.smtpClient = smtpClient;
-            this.jwtToken = jwtToken;
         }
 
         private void SendMail(IEnumerable<Reminder> remindersToSend)
@@ -44,15 +43,36 @@ namespace remind_me_cron_job
         public void Start(string[] args)
         {
             var request = new RestRequest("/api/Reminder/all", Method.GET);
-            request.AddHeader("Authorization", string.Format("bearer {0}", this.jwtToken));
-            var response = this.client.Execute<List<Reminder>>(request);
-            if (null == response.Data)
+            var token = this.GetJwtToken();
+            if (!string.IsNullOrWhiteSpace(token))
             {
-                return;
+                request.AddHeader("Authorization", string.Format("Bearer {0}", token));
+                var response = this.client.Execute<List<Reminder>>(request);
+                if (null == response.Data)
+                {
+                    return;
+                }
+
+                var remindersToSend = response.Data.Where(r => r.DueDate.Date == DateTime.Today.Date);
+                this.SendMail(remindersToSend);
+            }
+        }
+
+        private string GetJwtToken()
+        {
+            var request = new RestRequest("/Authentication/GetToken", Method.POST);
+            request.AddParameter(
+                "application/json",
+                JsonConvert.SerializeObject(
+                    new TokenRequest { Username = "System", Password = "WellKnownPassword" }),
+                ParameterType.RequestBody);
+            var tokenResponse = client.Execute<Dictionary<string, string>>(request);
+            if (null != tokenResponse.Data)
+            {
+                return tokenResponse.Data["token"];
             }
 
-            var remindersToSend = response.Data.Where(r => r.DueDate.Date == DateTime.Today.Date);
-            this.SendMail(remindersToSend);
+            return string.Empty;
         }
     }
 }
