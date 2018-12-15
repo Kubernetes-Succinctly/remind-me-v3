@@ -19,7 +19,7 @@ namespace remind_me_api
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v2/swagger.json", "Remind Me API v2");
+                c.SwaggerEndpoint("swagger/v2/swagger.json", "Remind Me API v2");
                 c.RoutePrefix = string.Empty;
             });
 
