@@ -1,12 +1,12 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: remindmewebjob
+  name: remindmejob
 spec:
   template:
     spec:
       containers:
-      - name: remindmewebjob
+      - name: remindmejob
         image: kubernetessuccinctly/remind-me-job:1.0.0
         env:
           - name: GET_HOSTS_FROM # This variable tells the service to find service host information from dns service. You can change this value to 'env' to query service hosts from environment variables.
