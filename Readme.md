@@ -29,7 +29,7 @@ The following instructions assume that you are using the command line for all th
 dotnet build
 ```
 
-To run the projects, change to the **api** folder for the web application and **/job/remind-me-cron-job** folder for the API project and execute the following command.
+To run the projects, change to the **api** folder for the API project and **/job/remind-me-cron-job** folder for the background job and execute the following command.
 
 ```
 dotnet run
