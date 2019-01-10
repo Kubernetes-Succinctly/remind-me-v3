@@ -1,10 +1,10 @@
 # Remind Me v3.0
 
-This repository contains the source code of the third version of the application that we will deploy to our Kubernetes cluster. You can read more about this application and the steps that you need to follow to deploy this application in chapter **six** of the book. This version introduces an additional delete API to existing backend Web-API. It also has a background job to process saved reminders of the application.
+This repository contains the source code of the third version of the application that we will deploy to our Kubernetes cluster. You can read more about this application and the steps that you need to follow to deploy this application in chapter **six** of the book. This version introduces an additional delete API to existing backend Web API. It also has a background job to process the reminders saved by the user of the web application.
 
 ## Getting started
 
-Copy the source code of the application to your system. You will find two workspace files in the root folder. Open the workspace `remind-me-api.code-workspace` in one instance of Visual Studio Code. This workspace contains the back-end REST API which is present in the **/api/remind-me-api** folder in the project directory. Additionally, the workspace also contains the API unit test project in the **/api/api-tests** folder..
+Copy the source code of the application to your system. You will find two workspace files in the root folder. Open the workspace `remind-me-api.code-workspace` in one instance of Visual Studio Code. This workspace contains the back-end REST API which is present in the **/api/remind-me-api** folder in the project directory. Additionally, the workspace also contains the API unit test project in the **/api/api-tests** folder.
 
 Open the second workspace `remind-me-job.code-workspace` in another instance of Visual Studio Code. This workspace contains the background job which is present in the **/jobs/remind-me-cron-job/** folder in the project directory.
 
@@ -15,13 +15,12 @@ This project uses the following tools and technologies.
 1. VS Code IDE
 2. Docker
 3. ASP.net Core on .Net Core 2.1
-5. Test Frameworks: Protractor, and Jasmine on Karma test runner
-6. .Net Core 2.1 Web API
-7. xUnit tests for .Net Core
+4. .Net Core 2.1 Web API
+5. xUnit tests for .Net Core
 
 ### Installation
 
-Build individual projects from the CLI or VS Code. For the back end project in the **api** directory, the build task will restore all the nuget packages and the npm dependencies. For the job project in the **remind-me-cron-job**, the build task will restore the nuget packages.
+Build individual projects from the CLI or VS Code. For the back end project in the **api** directory, the build task will restore all the nuget packages. For the job project in the **remind-me-cron-job** directory, the build task will restore the nuget packages.
 
 The following instructions assume that you are using the command line for all the operations. Depending upon which project you are building, change to the **api** or **job** directory before executing the following commands. The following command will build the project.
 
@@ -63,7 +62,7 @@ Next, after changing to the **\api\remind-me-api** folder, execute the following
 docker build -t remind-me-api .
 ```
 
-Execute the following command to start a container named `remind-me-api-c` using the image that you previously generated for the Web API application. You will need to map a directory available on your system and mount it as a volume on the container. Follow the steps mentioned in this link to see how you can do so on your system: https://docs.docker.com/storage/volumes/. The following command assumes that system directory **C:/data** can be mapped to a volume on docker.
+Execute the following command to start a container named `remind-me-api-c` using the image that you previously generated for the Web API application. You will need to map a directory available on your system and mount it as a volume on the container. Follow the steps mentioned in this link to see how you can do so on your system: https://docs.docker.com/storage/volumes/. The following command assumes that system directory **C:/data** is mapped to a volume on docker.
 
 ```
 docker run -d -e dbPath=/data/Reminder.db -v C:/data:/data -p 8081:80 --name remind-me-api-c remind-me-api
