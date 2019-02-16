@@ -1,3 +1,15 @@
+# Kubernetes Succinctly
+
+This is the companion repo for [*Kubernetes Succinctly*](https://www.syncfusion.com/ebooks/) by Rahul Rai and Tarun Pabbi. Published by Syncfusion.
+
+[![cover](https://github.com/SyncfusionSuccinctlyE-Books/Kubernetes-Succinctly/blob/master/cover.png)](https://www.syncfusion.com/ebooks/Xamarin_Forms_Succinctly)
+
+## Looking for more _Succinctly_ titles?
+
+Check out the entire library of more than 150 _Succinctly_ e-books at [https://www.syncfusion.com/ebooks](https://www.syncfusion.com/ebooks).
+
+---
+
 # Remind Me v3.0
 
 This repository contains the source code of the third version of the application that we will deploy to our Kubernetes cluster. You can read more about this application and the steps that you need to follow to deploy this application in chapter **six** of the book. This version introduces an additional delete API to existing backend Web API. It also has a background job to process the reminders saved by the user of the web application.
